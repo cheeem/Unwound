@@ -1,0 +1,353 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,800;1,400;1,500;1,600;1,800&family=Poppins:wght@200;400;600;800&display=swap');
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+
+	font-family: 'Poppins', sans-serif;
+	color: var(--light1);
+}
+
+:root {
+	--light1: white;
+	--dark1: black;
+
+	--light1filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(279deg) brightness(105%) contrast(101%);
+
+	--sans: 'Poppins', sans-serif;
+	--serif: 'Playfair Display', serif;
+
+	--side-padding: 10vw;
+	--heading-font-size: max(1vw, 1.1vh);
+	--font-size: max(1vw, 1.5vh, 0.55rem);
+}
+
+li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+cite {
+	font-style: normal;
+}
+
+h1 {
+	font-family: var(--serif);
+	font-size: calc(var(--heading-font-size) * 6);
+	text-wrap: nowrap;
+}
+
+h4 {
+	font-family: var(--serif);
+	font-size: max(calc(var(--heading-font-size) * 1.5), 1em);
+	font-weight: 500;
+}
+
+html, body {
+	height: 100%;
+}
+
+body {
+	background-color: var(--dark1);
+
+	font-size: var(--font-size);
+}
+
+#progress-bar {
+	z-index: 5;
+	position: fixed;
+	top: 0;
+
+	width: 0.5em;
+
+	background-color: var(--light1);
+
+	opacity: 1;
+
+	transition: height 0.2s ease;
+}
+
+#progress-bar::after {
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	height: 100vmax;
+	width: 100%;
+
+	background-color: white;
+
+	content: "";
+
+	opacity: 0.1;
+}
+
+main, article {
+	display: flex;
+	flex-direction: column;
+	gap: 30em;
+}
+
+article:first-of-type {
+	margin-top: 5em;
+}
+
+section {	
+	display: flex;
+	justify-content: space-between;
+	gap: 7.5em;
+	
+	/* min-height: 100svh;
+	min-height: 100vh; */
+
+	padding: 0 var(--side-padding);
+}
+
+.content {
+	z-index: 1;
+
+	align-self: flex-start;
+
+	position: sticky;
+	top: 0;
+
+	display: flex;
+	flex-direction: column;
+	gap: 3em;
+
+	height: auto;
+	max-width: 55%;
+}
+
+.sidebar {
+	z-index: 2;
+
+	/* flex: 25em 1 1; */
+
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 3em;
+
+	max-width: 45%;
+}
+
+.heading h1:nth-of-type(2) {
+	translate: 0.3em -0.5em;
+
+	height: 0.85em;
+	width: 0;
+}
+
+.heading h1:nth-of-type(3) {
+	translate: 0.6em -0.5em;
+
+	height: 0.85em;
+	width: 0;
+}
+
+.heading h1:nth-of-type(4) {
+	translate: 0 -0.5em;
+
+	height: 0.85em;
+	width: 0;
+}
+
+.heading ul {
+	margin-top: 1em;
+}
+
+.heading li p {
+	display: inline;
+}
+
+.heading li img {
+	height: 1.1em;
+	translate: 0 0.2em;
+	filter: var(--light1filter);
+}
+
+/* .heading * {
+	font-family: var(--serif);
+} */
+
+.body {
+	display: grid;
+	gap: 1em;
+}
+
+.body p {
+	font-weight: 200;
+}
+
+.quote {
+	display: flex;
+	gap: 1em;
+}
+
+.quote::before {
+	font-family: var(--serif);
+	font-size: 5em;
+
+	content: "❝";
+
+	translate: 0 -0.3em;
+}
+
+blockquote a {
+	display: block;
+
+	margin-top: 1em;
+}
+
+blockquote cite {
+	font-style: normal;
+	font-weight: 200;
+	font-size: 0.8em;
+
+	opacity: 0.7;
+}
+
+.image, .image img {
+	width: 100%;
+}
+
+.image img {
+	margin-bottom: 0.4em;
+}
+
+.image p {
+	font-weight: 200;
+
+	margin-bottom: 0.2em;
+}
+
+.image cite {
+	font-weight: 400;
+	font-size: 0.8em;
+}
+
+.lyrics {
+	position: relative;
+
+	display: flex;
+	flex-direction: column;
+	gap: 0.5em;
+
+	width: 100%;
+}
+
+.lyrics div {
+	overflow-y: hidden;
+	/* overflow-y: scroll; */
+	
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	padding: 2em;
+
+	height: 100%;
+	width: 100%;
+}
+
+.lyrics a {
+	margin-bottom: 1em;
+}
+
+.lyrics cite {
+	font-weight: 400;
+	font-size: 1em;
+}
+
+.lyrics p {
+	font-weight: 200;
+}
+
+.lyrics img {
+	opacity: 0.2;
+}
+
+.track p {
+	font-weight: 200;
+}
+
+#bib {
+	display: grid; 
+	gap: 2em;
+
+	padding: 0 var(--side-padding);
+}
+
+#bib ul {
+	display: grid;
+	gap: 0.5em;
+}
+
+#bib li {
+	position: relative;
+
+	text-indent: -2em;
+
+	translate: 1em 0;
+
+	padding-right: 2em;
+}
+
+/* #bib li::after {
+	position: absolute;
+	
+	bottom: 0;
+
+	display: hidden;
+
+} */
+
+#bib li:target cite {
+	color: yellow;
+}
+
+#bib cite {
+	display: inline;
+
+	font-weight: 200;
+}
+
+#bib img {
+	height: 1em;
+	width: 1em;
+
+	filter: var(--light1filter);
+	translate: 0 0.1em;
+}
+
+@media only screen and (max-aspect-ratio: 9/8) {
+
+	#progress-bar {
+		display: none;
+	}
+
+	section {
+		flex-direction: column;
+		gap: 4em;
+
+		padding: 0 auto;
+	}
+
+	section > * {
+		min-width: 100%;
+	}
+
+	.content {
+		position: static;
+	}
+	
+}
