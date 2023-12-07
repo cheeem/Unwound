@@ -6,11 +6,12 @@ const quotes: NodeListOf<HTMLElement> = document.querySelectorAll(".quote");
 const lyrics: NodeListOf<HTMLElement> = document.querySelectorAll(".lyrics");
 const images: NodeListOf<HTMLElement> = document.querySelectorAll(".image");
 
+const quotes_cite_map: {[key: string]: number} = {};
+const images_cite_map: {[key: string]: number} = {};
+
 let cite_index: number = 0;
 
 for(let i = 0; i < quotes.length; i++) {
-
-    cite_index++;
 
     const quote: HTMLElement = quotes[i];
 
@@ -18,22 +19,32 @@ for(let i = 0; i < quotes.length; i++) {
     const bib: string = quote.dataset.bib ?? "";
     const link: string = quote.dataset.link ?? "";
 
-    const bib_item: HTMLElement = document.createElement("li");
+    let idx = quotes_cite_map[link];
 
-    bib_item.innerHTML = `
-        <li id="cite-${cite_index}">
-            <a href="${link}">
-                <cite>
-                    ${bib}
-                </cite>
-                <img src="./src/img/link.svg" /> 
-            </a>
-        </li>
-    `;
+    if(idx === undefined) {
 
-    quotes_bib.appendChild(bib_item);
+        cite_index++;
+        quotes_cite_map[link] = cite_index;
+        idx = cite_index;
 
-    quote.children[0].innerHTML += `<a href="cite-${cite_index}"><cite>${cite}</cite></a>`;
+        const bib_item: HTMLElement = document.createElement("li");
+
+        bib_item.innerHTML = `
+            <li id="cite-${idx}">
+                <a href="${link}">
+                    <cite>
+                        ${bib}
+                    </cite>
+                    <img src="./src/img/link.svg" /> 
+                </a>
+            </li>
+        `;
+
+        quotes_bib.appendChild(bib_item);
+
+    }
+
+    quote.children[0].innerHTML += `<a href="#cite-${idx}"><cite>${cite}</cite></a>`;
 
 }
 
@@ -58,15 +69,13 @@ for(let i = 0; i < lyrics.length; i++) {
 
     lyrics_bib.appendChild(bib_item);
 
-    const innerHTML: string = _lyrics.children[0].innerHTML;
+    const innerHTML: string = _lyrics.children[1].innerHTML;
 
-    _lyrics.children[0].innerHTML = `<a href="#cite-${cite_index}"><cite>${cite}</cite></a>` + innerHTML;
+    _lyrics.children[1].innerHTML = `<a href="#cite-${cite_index}"><cite>${cite}</cite></a>` + innerHTML;
 
 }
 
 for(let i = 0; i < images.length; i++) {
-
-    cite_index++;
 
     const image: HTMLElement = images[i];
 
@@ -74,22 +83,32 @@ for(let i = 0; i < images.length; i++) {
     const bib: string = image.dataset.bib ?? "";
     const link: string = image.dataset.link ?? "";
 
-    const bib_item: HTMLElement = document.createElement("li");
+    let idx = quotes_cite_map[link];
 
-    bib_item.innerHTML = `
-        <li id="cite-${cite_index}">
-            <a href="${link}">
-                <cite>
-                    ${bib}
-                </cite>
-                <img src="./src/img/link.svg" /> 
-            </a>
-        </li>
-    `;
+    if(idx === undefined) {
 
-    images_bib.appendChild(bib_item);
+        cite_index++;
+        images_cite_map[link] = cite_index;
+        idx = cite_index;
 
-    image.innerHTML += `<a href="#cite-${cite_index}"><cite>${cite}</cite></a>`;
+        const bib_item: HTMLElement = document.createElement("li");
+
+        bib_item.innerHTML = `
+            <li id="cite-${idx}">
+                <a href="${link}">
+                    <cite>
+                        ${bib}
+                    </cite>
+                    <img src="./src/img/link.svg" /> 
+                </a>
+            </li>
+        `;
+
+        images_bib.appendChild(bib_item);
+
+    }
+
+    image.innerHTML += `<a href="#cite-${idx}"><cite>${cite}</cite></a>`;
 
 }
 

@@ -20,7 +20,7 @@
 
 	--side-padding: 10vw;
 	--heading-font-size: max(1vw, 1.1vh);
-	--font-size: max(1vw, 1.5vh, 0.55rem);
+	--font-size: max(0.95vw, 1.5vh, 0.55rem);
 }
 
 li {
@@ -37,6 +37,9 @@ a:hover {
 
 cite {
 	font-style: normal;
+	font-weight: 200;
+	font-size: 0.8em;
+	opacity: 0.8;
 }
 
 h1 {
@@ -61,7 +64,7 @@ body {
 	font-size: var(--font-size);
 }
 
-#progress-bar {
+/* #progress-bar {
 	z-index: 5;
 	position: fixed;
 	top: 0;
@@ -88,7 +91,7 @@ body {
 	content: "";
 
 	opacity: 0.1;
-}
+} */
 
 main, article {
 	display: flex;
@@ -121,10 +124,10 @@ section {
 
 	display: flex;
 	flex-direction: column;
-	gap: 3em;
+	gap: 1.5em;
 
 	height: auto;
-	max-width: 55%;
+	max-width: 45%;
 }
 
 .sidebar {
@@ -134,7 +137,7 @@ section {
 
 	display: flex;
 	flex-direction: column;
-	align-items: flex-end;
+	/* align-items: flex-end; */
 	gap: 3em;
 
 	max-width: 45%;
@@ -162,6 +165,9 @@ section {
 }
 
 .heading ul {
+	display: flex;
+	gap: 1em;
+
 	margin-top: 1em;
 }
 
@@ -197,6 +203,8 @@ section {
 	font-family: var(--serif);
 	font-size: 5em;
 
+	height: 0.8em;
+
 	content: "❝";
 
 	translate: 0 -0.3em;
@@ -206,14 +214,6 @@ blockquote a {
 	display: block;
 
 	margin-top: 1em;
-}
-
-blockquote cite {
-	font-style: normal;
-	font-weight: 200;
-	font-size: 0.8em;
-
-	opacity: 0.7;
 }
 
 .image, .image img {
@@ -230,11 +230,6 @@ blockquote cite {
 	margin-bottom: 0.2em;
 }
 
-.image cite {
-	font-weight: 400;
-	font-size: 0.8em;
-}
-
 .lyrics {
 	position: relative;
 
@@ -246,8 +241,8 @@ blockquote cite {
 }
 
 .lyrics div {
-	overflow-y: hidden;
-	/* overflow-y: scroll; */
+	/* overflow-y: hidden; */
+	overflow-y: scroll;
 	
 	position: absolute;
 	top: 0;
@@ -259,13 +254,25 @@ blockquote cite {
 	width: 100%;
 }
 
+.lyrics div::-webkit-scrollbar {
+	width: 0.3em;
+}
+
+.lyrics div::-webkit-scrollbar-thumb {
+	background: var(--light1);
+}
+
+
 .lyrics a {
+	display: block;
+	
 	margin-bottom: 1em;
 }
 
 .lyrics cite {
 	font-weight: 400;
 	font-size: 1em;
+	opacity: 1;
 }
 
 .lyrics p {
@@ -318,7 +325,9 @@ blockquote cite {
 #bib cite {
 	display: inline;
 
+	font-size: 1em;
 	font-weight: 200;
+	opacity: 1;
 }
 
 #bib img {
@@ -331,9 +340,9 @@ blockquote cite {
 
 @media only screen and (max-aspect-ratio: 9/8) {
 
-	#progress-bar {
+	/* #progress-bar {
 		display: none;
-	}
+	} */
 
 	section {
 		flex-direction: column;
